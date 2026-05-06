@@ -1,0 +1,61 @@
+:root {
+    --rojo: #e50914;
+    --oscuro: #141414;
+    --tarjeta: #2f2f2f;
+}
+
+body {
+    background-color: var(--oscuro);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+}
+
+.header {
+    padding: 40px; text-align: center;
+    background: linear-gradient(to bottom, #000, var(--oscuro));
+}
+
+/* Buscador y Filtros */
+.controles {
+    display: flex; flex-direction: column; align-items: center; gap: 20px; margin-bottom: 40px;
+}
+
+.search-input {
+    padding: 12px 20px; width: 300px; border-radius: 25px; border: none;
+    background: #333; color: white; outline: none;
+}
+
+.btn-genero {
+    padding: 8px 15px; border-radius: 20px; border: 1px solid white;
+    background: transparent; color: white; text-decoration: none; transition: 0.3s;
+}
+
+.btn-genero:hover, .btn-active {
+    background: var(--rojo); border-color: var(--rojo);
+}
+
+/* El Grid Pro */
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 30px; padding: 0 50px;
+}
+
+.pelicula-card {
+    position: relative; transition: 0.4s; cursor: pointer;
+}
+
+.pelicula-card:hover { transform: scale(1.08); z-index: 2; }
+
+.pelicula-card img {
+    width: 100%; height: 320px; object-fit: cover; border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.info-overlay {
+    margin-top: 10px;
+}
+
+.info-overlay h3 { margin: 5px 0; font-size: 1.1rem; }
+.info-overlay span { color: #aaa; font-size: 0.9rem; }

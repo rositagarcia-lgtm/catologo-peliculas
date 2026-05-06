@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ pelicula.titulo }} | CinePro</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    
+    <style>
+        body {
+            background: #0a0a0a;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .glass-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 30px;
+            display: flex;
+            padding: 40px;
+            max-width: 900px;
+            width: 90%;
+            gap: 40px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+
+        /* Botón de flecha circular */
+        .btn-back {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 50px;
+            height: 50px;
+            background: #e50914; 
+            color: rgb(0, 0, 0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: 0.3s;
+            z-index: 10;
+        }
+
+        .btn-back:hover { transform: scale(1.1); background: #b20710; }
+
+        .poster-wrapper img {
+            width: 300px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: block;
+        }
+
+        .info-content { flex: 1; }
+
+        .movie-title {
+            font-size: 3rem;
+            margin: 10px 0;
+            font-weight: 800;
+            line-height: 1.1;
+        }
+
+        .genre-tag {
+            color: #e50914;
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-item { display: flex; align-items: center; gap: 12px; }
+        .stat-item i { color: #e50914; font-size: 1.1rem; width: 20px; text-align: center; }
+        .stat-item div span { display: block; color: #666; font-size: 0.7rem; text-transform: uppercase; }
+        .stat-item div strong { font-size: 1rem; color: #eee; }
+
+        .quote {
+            margin-top: 40px;
+            padding-left: 15px;
+            border-left: 3px solid #e50914;
+            color: #888;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <!-- Botón de regreso con icono de flecha -->
+        <a href="/" class="btn-back">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+
+        <div class="poster-wrapper">
+            {% if pelicula.poster %}
+                <img src="{{ pelicula.poster.url }}" alt="{{ pelicula.titulo }}">
+            {% endif %}
+        </div>
+
+        <div class="info-content">
+            <span class="genre-tag">{{ pelicula.genero.nombre }}</span>
+            <h1 class="movie-title">{{ pelicula.titulo }}</h1>
+            
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <i class="fas fa-user-tie"></i>
+                    <div>
+                        <span>Director</span>
+                        <strong>{{ pelicula.director.nombre }}</strong>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <span>Estreno</span>
+                        <strong>{{ pelicula.anio }}</strong>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-globe"></i>
+                    <div>
+                        <span>País</span>
+                        <strong>{{ pelicula.director.pais }}</strong>
+                    </div>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <span>Calidad</span>
+                        <strong>4K Ultra HD</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote">
+                "Una obra maestra visual dirigida por {{ pelicula.director.nombre }}."
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
