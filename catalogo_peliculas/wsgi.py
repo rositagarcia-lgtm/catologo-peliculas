@@ -1,16 +1,11 @@
-"""
-WSGI config for catalogo_peliculas project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/6.0/howto/deployment/wsgi/
-"""
-
 import os
+import sys
+
+path = '/home/rositagarcia/catologo-pelis'
+if path not in sys.path:
+    sys.path.append(path)
+
+os.environ['DJANGO_SETTINGS_MODULE'] = 'catalogo_peliculas.settings'
 
 from django.core.wsgi import get_wsgi_application
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'catalogo_peliculas.settings')
-
 application = get_wsgi_application()

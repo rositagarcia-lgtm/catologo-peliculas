@@ -77,13 +77,14 @@ WSGI_APPLICATION = 'catalogo_peliculas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'catalogo_peliculas',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',
+        'NAME': 'rositagarcia$peliculas', 
+        'USER': 'rositagarcia',           
+        'PASSWORD': 'tu_password_de_BD',  # La que creaste en la pestaña Databases
+        'HOST': '://pythonanywhere-services.com', # El host que te dan ahí
         'PORT': '3306',
     }
 }
+
 
 
 # Password validation
