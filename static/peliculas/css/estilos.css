@@ -59,3 +59,21 @@ body {
 
 .info-overlay h3 { margin: 5px 0; font-size: 1.1rem; }
 .info-overlay span { color: #aaa; font-size: 0.9rem; }
+.btn-admin {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #e50914;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.btn-admin:hover {
+    background: #b20710;
+    transform: scale(1.08);
+}

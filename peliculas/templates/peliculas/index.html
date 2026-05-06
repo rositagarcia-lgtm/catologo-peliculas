@@ -5,48 +5,77 @@
     <meta charset="UTF-8">
     <title>CinePro | Catálogo</title>
     <link rel="stylesheet" href="{% static 'peliculas/css/estilos.css' %}">
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
+
 <body>
 
     <div class="header">
-        <!-- Icono de cinta de cine profesional -->
-        <h1><i class="fas fa-video text-danger"></i> CINEMASTER PRO</h1>
+
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h1>
+                <i class="fas fa-video text-danger"></i> CINEMASTER PRO
+            </h1>
+
+            <a href="{% url 'panel_admin' %}" class="btn-admin" title="Panel administrativo">
+                <i class="fas fa-ellipsis-v"></i>
+            </a>
+        </div>
         
         <div class="controles">
-            <!-- Buscador con icono de lupa -->
+
             <form method="GET" style="position: relative;">
                 <i class="fas fa-search" style="position: absolute; left: 15px; top: 15px; color: #888;"></i>
-                <input type="text" name="q" class="search-input" style="padding-left: 40px;" placeholder="Buscar película o director..." value="{{ request.GET.q }}">
+
+                <input 
+                    type="text" 
+                    name="q" 
+                    class="search-input" 
+                    style="padding-left: 40px;" 
+                    placeholder="Buscar película o director..." 
+                    value="{{ request.GET.q }}"
+                >
             </form>
 
-            <!-- Filtros por Género -->
             <div class="filtros">
-                <a href="/" class="btn-genero"><i class="fas fa-th-large"></i> Todos</a>
+                <a href="{% url 'lista_peliculas' %}" class="btn-genero">
+                    <i class="fas fa-th-large"></i> Todos
+                </a>
+
                 {% for g in generos %}
-                    <a href="?genero={{ g.id }}" class="btn-genero">{{ g.nombre }}</a>
+                    <a href="?genero={{ g.id }}" class="btn-genero">
+                        {{ g.nombre }}
+                    </a>
                 {% endfor %}
             </div>
+
         </div>
     </div>
 
     <div class="galeria">
         {% for p in peliculas %}
-        <!-- Enlace al detalle envolviendo la tarjeta -->
-        <a href="{% url 'detalle' p.id %}" style="text-decoration: none; color: inherit;">
-            <div class="pelicula-card">
+
+        <a href="{% url 'detalle_pelicula' p.id %}" style="text-decoration: none; color: inherit;">            <div class="pelicula-card">
+
                 {% if p.poster %}
                     <img src="{{ p.poster.url }}" alt="{{ p.titulo }}">
                 {% endif %}
+
                 <div class="info-overlay">
                     <h3>{{ p.titulo }}</h3>
-                    <span><i class="far fa-calendar-alt"></i> {{ p.anio }} • {{ p.genero.nombre }}</span>
+
+                    <span>
+                        <i class="far fa-calendar-alt"></i> {{ p.anio }} • {{ p.genero.nombre }}
+                    </span>
+
                     <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">
                         <i class="fas fa-user-tie"></i> {{ p.director.nombre }}
                     </p>
                 </div>
+
             </div>
         </a>
+
         {% empty %}
             <p style="text-align: center; width: 100%; color: #888;">
                 <i class="fas fa-exclamation-circle"></i> No encontramos resultados para tu búsqueda.
@@ -55,5 +84,4 @@
     </div>
 
 </body>
-
 </html>

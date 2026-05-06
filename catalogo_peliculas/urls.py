@@ -1,13 +1,11 @@
 from django.contrib import admin
-from django.urls import path
-from peliculas.views import lista_peliculas, detalle_pelicula # <-- Importado correctamente
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', lista_peliculas, name='index'),
-    path('pelicula/<int:peli_id>/', detalle_pelicula, name='detalle'),
+    path('', include('peliculas.urls')),
 ]
 
 if settings.DEBUG:
